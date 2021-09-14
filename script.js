@@ -21,19 +21,20 @@ campoNome.value = "";
 // Conceito de evento
 // Referencia de campo.
 // DOM -> recebe esses eventos
-campoNome.addEventListener("keyup", funcion() {
+campoNome.addEventListener("keyup", function () {
     // Apagar a mensagem caso o nome seja válido
     // ou seja, tenha mais de uma letra.
 
+console.log(campoNome.value);
 
-
-    if (campoNome.value.length === 0) ,3
+    if (campoNome.value.length === 0) 
 { 
         // alert("mensagem");
         mensagem.innerHTML = "Digite seu nome";
         } else {
             mensagem.innerHTML = "";
-            };
+            }
+});
     
     // chamando API do GitHub
 
@@ -43,20 +44,21 @@ campoNome.addEventListener("keyup", funcion() {
     let promessa = fetch("https://api-github.com/users/ciprianalombendo/repos")
     let githubNoHTML = document.getElementById("github");
 
-    promessa
-    .then(funcion(retorno) {
+    promessa.then(function(retorno) {
             return retorno.json();
         })
         // repositório é um Array de JSONS
         .then(function (repositorios) {
+            
             let NOMES = {};
 
             for (let repositorio of repositorios) {
                 // rePositorio.full_name
-                nomes.push(repositorio.full_name);
+                console.log(repositorio)
+                //nomes.push(repositorio.full_name);
             }
 
-            githubNoHTML.innerHTML = nomes;
+            //githubNoHTML.innerHTML = nomes;
            
     });
 
