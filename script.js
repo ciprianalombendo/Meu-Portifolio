@@ -44,21 +44,24 @@ console.log(campoNome.value);
     let promessa = fetch("https://api-github.com/users/ciprianalombendo/repos")
     let githubNoHTML = document.getElementById("github");
 
-    promessa.then(function(retorno) {
-            return retorno.json();
-        })
+    promessa.then((retorno) => retorno.json() )
+    
         // repositório é um Array de JSONS
-        .then(function (repositorios) {
+        .then((repositorios) => {
             
-            let NOMES = {};
+            //let nomes = {};
 
-            for (let repositorio of repositorios) {
-                // rePositorio.full_name
-                console.log(repositorio)
-                //nomes.push(repositorio.full_name);
-            }
+            //for (let repositorio of repositorios) {
+               // nomes.push("<li>" + repositorio.full_name + "<li>");
+                // repositorio.full_name
+            //}
 
-            //githubNoHTML.innerHTML = nomes;
+            let nomes = repositorios.map(
+                (repositorio) => "<li>" + repositorio.full_name + "<li>"
+                );
+            
+  
+            githubNoHTML.innerHTML = nomes;
            
     });
 
