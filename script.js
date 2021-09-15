@@ -1,68 +1,59 @@
-import "./styles.css";
+let botaoEnviar = document.getElementById(botaoEnviar);
+let formulario = document.getElementsByClassName("contato_formulario");
 
-document.getElementById("app").innerHTML = '<h1>App!</h1>';
+botaoEnviar.addEventListener("click", (event) => {
+  let campoNome = document.getElementById("nome");
+  let mensagemNome = document.getElementById("mensagemNome");
 
-let aulaDeHoje = document.getElementById('aula-de-hoje');
+  let campoEmail = document.getElementById("email");
+  let mensagemEmail = document.getElementById("mensagemEmail");
 
-aulaDeHoje.innerHTML = 'O que quiser';
-document.getElementById('root')
+  let campoMensagem = document.getElementById("mensagem");
+  let mensagemMensagem = document.getElementById("mensagemMensagem");
 
-let campoNome = document.getElementById("nome");
-let mensagem = document.getElementById("mensagem")
+  campoNome.value = "";
 
-//const input = {value: ""}
+  if (campoNome.value.length === 0) {
+    mensagemNome.innerHTML = "Digite seu nome";
+  } else {
+    mensagem.innerHTML = "";
+  }
 
+  //campoEmail.value = "";
+  if (campoEmail.value === "") {
+    mensagemEmail.innerHTML = "Digite seu email";
+  } else {
+    mensagemEmail.innerHTML = "";
+  }
 
+  if (campoMensagem.value.length === 0) {
+    mensagemMensagem.innerHTML = "Digite sua mensagem";
+  } else {
+    mensagemMensagem.innerHTML = "";
 
-campoNome.value = "";
-// Quero validar o campo nome, toda vez
-// que o usuário digita alguma coisa no input
-// nome.
-// Conceito de evento
-// Referencia de campo.
-// DOM -> recebe esses eventos
-campoNome.addEventListener("keyup", function () {
-    // Apagar a mensagem caso o nome seja válido
-    // ou seja, tenha mais de uma letra.
-
-console.log(campoNome.value);
-
-    if (campoNome.value.length === 0) 
-{ 
-        // alert("mensagem");
-        mensagem.innerHTML = "Digite seu nome";
-        } else {
-            mensagem.innerHTML = "";
-            }
+    event.preventDefault();
+  }
 });
-    
-    // chamando API do GitHub
 
-    // Get https://api-github.com/users/ciprianalombendo/repos
+let promessa = fetch("https://api-github.com/users/ciprianalombendo/repos");
 
-    /* <div id="github"></div> */
-    let promessa = fetch("https://api-github.com/users/ciprianalombendo/repos")
-    let githubNoHTML = document.getElementById("github");
+let containerRepositorios = document.getElementById("containerGithub");
 
-    promessa.then((retorno) => retorno.json() )
-    
-        // repositório é um Array de JSONS
-        .then((repositorios) => {
-            
-            //let nomes = {};
+promessa
+  .then(function (retorno) {
+    return retorno.json();
+  })
 
-            //for (let repositorio of repositorios) {
-               // nomes.push("<li>" + repositorio.full_name + "<li>");
-                // repositorio.full_name
-            //}
+  .then(function (repositorios) {
+    let nomes = {};
 
-            let nomes = repositorios.map(
-                (repositorio) => "<li>" + repositorio.full_name + "<li>"
-                );
-            
-  
-            githubNoHTML.innerHTML = nomes;
-           
-    });
+    for (let repositorio of repositorios) {
+      console.log(repositorio.html_url);
 
-    //console.log(retorno);
+      nomes.push(
+        "<li>" + repositorio.name + " " + repositorio.html_url + "</li>"
+      );
+    }
+
+    containerRepositorios.innerHTML = nomes;
+  });
