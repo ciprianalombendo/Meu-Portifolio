@@ -6,7 +6,7 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="styles.css"
+      href="./styles.css"
       media="screen"
     />
   </head>
@@ -38,14 +38,14 @@
 
       <!-- Carregando a imagem sem Fundo -->
       <div>
-        <img src="./portifolio/image.png" class="imgbg" alt="imgbg" />
+        <img src="image.png" class="imgbg" alt="imgbg" />
       </div>
     </section>
 
     <!-- Conteúods -->
 
     <div class="conteudo-sobre">
-      <img src="./portfolio/image.png" />
+      <img src="image.png" />
 
       <div class="texto-sobre">
         <p>Sobre</p>
@@ -115,7 +115,7 @@
             Eu amo cozinhar, estar em contato com a natureza, esportes radicais,
             estar em familia.
             <br />
-            Cozinhar é a arte de cuidar, amar é resgatar lembranças, aromas,
+            Cozinhar é a arte de cuidar, amar e resgatar lembranças, aromas,
             pessoas, sabores e memorias
           </p>
 
@@ -139,7 +139,7 @@
       </div>
     </div>
     <section class="github" id="github">
-      <div class="container-github" id="continerGithub">
+      <div class="container-github" id="containerGithub">
         <h1>Repositórios do GitHub</h1>
       </div>
     </section>
@@ -147,32 +147,16 @@
     <!-- Seção fale conosco -->
 
     <div class="contato">
-      <form class="contato_formulario">
-        <p>Se você tem projetos entre em contato comigo!</p>
+      <p>Se você tem projetos entre em contato comigo!</p>
 
-        <div id="mensagemNome"></div>
-        <div>
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome" placeholder="" required />
-      </div>
-        <div id="mensagemEmail"></div>
-        <div>
-          <label for="email"> Email: </label>
-          <input class="text" id="email" type="text" name="Email" required />
+    <form nome="formulario" action="enviar" method="POST">
+      Nome:<input type="text" name="nome" ><br><br>
+      Email:<input type="email" name="email" ><br><br>
+      Mensagem:<input type="text" name="mensagem" ><br><br>      
+      <input type="submit" onclick="return validar()">
+    </form>
         </div>
-
-        <div id="mensagemMensagem"></div>
-        <div>
-          <label for="mensagem"> Mensagem: </label>
-          <textarea class="datos" id="mensagem" nome="Mensagem" cols="30" rows="10"></textarea>
-        </div>
-
-        <div id="mensagemBotaoEnviar"></div>
-        <button class="botaoEnviar" id="botaoEnviar" type="submit">
-          Enviar
-        </button>
-      </form>
-    </div>
+        
 
     <!-- Seção footer -->
 
@@ -182,6 +166,6 @@
       <p class="copy">Copyright by Ci Luis</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
